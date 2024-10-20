@@ -12,6 +12,8 @@
 #include <exception>
 #include <optional>
 
+namespace maybe {
+
 template<class E>
 class unexpected {
 public:
@@ -216,3 +218,5 @@ template<class T, class E, class U>
 constexpr bool operator!=(const U& lhs, const Maybe<T, E>& rhs) {
     return !(rhs == lhs);
 }
+
+};

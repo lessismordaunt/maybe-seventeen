@@ -2,6 +2,8 @@
 #include "maybe.hpp"
 
 int main() {
+	using namespace maybe;
+
 	Maybe<int, std::string> result1 = 42;
 	Maybe<int, std::string> result2 = unexpected("Error occurred");
 
