@@ -1,2 +1,3 @@
 # maybe-seventeen
-The Unexpected idiom backported to C++17.
+
+Enjoy elegant errors-as-values in C++17! 🥳
