@@ -5,7 +5,7 @@ int main() {
 	using namespace maybe;
 
 	Maybe<int, std::string> result1 = 42;
-	Maybe<int, std::string> result2 = unexpected("Error occurred");
+	Maybe<int, std::string> result2 = maybe::unexpected("Error occurred");
 
 	if (result1) {
 		std::cout << "Result 1: " << result1.value() << std::endl;
