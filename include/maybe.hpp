@@ -61,6 +61,10 @@ public:
     constexpr explicit Maybe(unexpect_t, Args&&... args) 
         : var(std::in_place_index<1>, std::forward<Args>(args)...) {}
 
+    template<class... Args,
+             std::enable_if_t<std::is_constructible_v<T, Args...>, int> = 0>
+    constexpr Maybe(Args&&... args) : var(std::in_place_index<0>, std::forward<Args>(args)...) {}
+        
     constexpr bool has_value() const noexcept { return var.index() == 0; }
     constexpr explicit operator bool() const noexcept { return has_value(); }
 
