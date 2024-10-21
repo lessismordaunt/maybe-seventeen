@@ -10,10 +10,11 @@ struct MyComplexType {
 };
 
 int main() {
-	using namespace maybe;
+	template<class T>
+	using StringMaybe = maybe::Maybe<T, std::string>;
 	
-	Maybe<MyComplexType, std::string> result1 { 42, "Hello, World!" };
-	Maybe<MyComplexType, std::string> result2 = maybe::unexpected("Error occurred");
+	StringMaybe<MyComplexType> result1 { 42, "Hello, World!" };
+	StringMaybe<MyComplexType> result2 = maybe::unexpected("Error occurred");
 
 	if (result1) {
 		std::cout << "Result 1: " << result1.value().message << std::endl;
