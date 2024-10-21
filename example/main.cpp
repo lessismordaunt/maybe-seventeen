@@ -9,10 +9,10 @@ struct MyComplexType {
 	MyComplexType(int i, std::string m) : index(i), message(std::move(m)) {}
 };
 
+template<class T>
+using StringMaybe = maybe::Maybe<T, std::string>;
+
 int main() {
-	template<class T>
-	using StringMaybe = maybe::Maybe<T, std::string>;
-	
 	StringMaybe<MyComplexType> result1 { 42, "Hello, World!" };
 	StringMaybe<MyComplexType> result2 = maybe::unexpected("Error occurred");
 
