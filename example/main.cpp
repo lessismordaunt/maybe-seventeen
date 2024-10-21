@@ -4,11 +4,14 @@
 struct MyComplexType {
 	int index;
 	std::string message;
+
+	// Note that aggregate initialisation is not possible when using Maybe.
+	MyComplexType(int i, std::string m) : index(i), message(std::move(m)) {}
 };
 
 int main() {
 	using namespace maybe;
-
+	
 	Maybe<MyComplexType, std::string> result1 { 42, "Hello, World!" };
 	Maybe<MyComplexType, std::string> result2 = maybe::unexpected("Error occurred");
 
