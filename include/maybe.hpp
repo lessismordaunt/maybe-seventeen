@@ -69,19 +69,19 @@ public:
     constexpr explicit operator bool() const noexcept { return has_value(); }
 
     constexpr T& value() & {
-        static_assert(!has_value(), "bad_optional_access");
+        if (!has_value()) std::terminate();
         return std::get<0>(var);
     }
     constexpr const T& value() const & {
-        static_assert(!has_value(), "bad_optional_access");
+        if (!has_value()) std::terminate();
         return std::get<0>(var);
     }
     constexpr T&& value() && {
-        static_assert(!has_value(), "bad_optional_access");
+        if (!has_value()) std::terminate();
         return std::move(std::get<0>(var));
     }
     constexpr const T&& value() const && {
-        static_assert(!has_value(), "bad_optional_access");
+        if (!has_value()) std::terminate();
         return std::move(std::get<0>(var));
     }
 
