@@ -9,7 +9,7 @@ struct MyComplexType {
 int main() {
 	using namespace maybe;
 
-	Maybe<MyComplexType, std::string> result1 = { 42, "Hello, World!" };
+	Maybe<MyComplexType, std::string> result1 { 42, "Hello, World!" };
 	Maybe<MyComplexType, std::string> result2 = maybe::unexpected("Error occurred");
 
 	if (result1) {
