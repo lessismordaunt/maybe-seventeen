@@ -1,14 +1,19 @@
 #include <iostream>
 #include "maybe.hpp"
 
+struct MyComplexType {
+	int index;
+	std::string message;
+};
+
 int main() {
 	using namespace maybe;
 
-	Maybe<int, std::string> result1 = 42;
-	Maybe<int, std::string> result2 = maybe::unexpected("Error occurred");
+	Maybe<MyComplexType, std::string> result1 { 42, "Hello, World!" };
+	Maybe<MyComplexType, std::string> result2 = maybe::unexpected("Error occurred");
 
 	if (result1) {
-		std::cout << "Result 1: " << result1.value() << std::endl;
+		std::cout << "Result 1: " << result1.value().message << std::endl;
 	}
 
 	if (!result2) {
