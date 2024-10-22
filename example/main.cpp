@@ -13,16 +13,14 @@ template<class T>
 using StringMaybe = maybe::Maybe<T, std::string>;
 
 int main() {
-	StringMaybe<MyComplexType> result1 { 42, "Hello, World!" };
-	StringMaybe<MyComplexType> result2 = maybe::unexpected("Error occurred");
+	StringMaybe<MyComplexType> maybe_value { 42, "Hello, World!" };
+	StringMaybe<MyComplexType> maybe_error = maybe::unexpected("Error occurred");
 
-	if (result1) {
-		std::cout << "Result 1: " << result1.value().message << std::endl;
-	}
+	// Conversion to underlying value type is possible,
+	// with compile-time checks that the value is valid.
+	MyComplexType valid = maybe_value.value();
 
-	if (!result2) {
-		std::cout << "Result 2 error: " << result2.error() << std::endl;
-	}
+	MyComplexType error = maybe_error.value();
 
 	return 0;
 }

@@ -68,20 +68,23 @@ public:
     constexpr bool has_value() const noexcept { return var.index() == 0; }
     constexpr explicit operator bool() const noexcept { return has_value(); }
 
-    constexpr T& value() & {
-        if (!has_value()) std::terminate();
+    template<typename U = T>
+    constexpr auto value() & -> std::enable_if_t<std::is_same_v<U, T>, T&> {
         return std::get<0>(var);
     }
-    constexpr const T& value() const & {
-        if (!has_value()) std::terminate();
+
+    template<typename U = T>
+    constexpr auto value() const & -> std::enable_if_t<std::is_same_v<U, T>, const T&> {
         return std::get<0>(var);
     }
-    constexpr T&& value() && {
-        if (!has_value()) std::terminate();
+
+    template<typename U = T>
+    constexpr auto value() && -> std::enable_if_t<std::is_same_v<U, T>, T&&> {
         return std::move(std::get<0>(var));
     }
-    constexpr const T&& value() const && {
-        if (!has_value()) std::terminate();
+
+    template<typename U = T>
+    constexpr auto value() const && -> std::enable_if_t<std::is_same_v<U, T>, const T&&> {
         return std::move(std::get<0>(var));
     }
 
