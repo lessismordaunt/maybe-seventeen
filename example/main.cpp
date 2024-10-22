@@ -18,9 +18,9 @@ int main() {
 
 	// Conversion to underlying value type is possible,
 	// with compile-time checks that the value is valid.
-	MyComplexType valid = maybe_value.value();
+	auto& valid = maybe_value.as_value();
 
-	MyComplexType error = maybe_error.value();
+	auto& error = maybe_error.as_value();
 
 	return 0;
 }
